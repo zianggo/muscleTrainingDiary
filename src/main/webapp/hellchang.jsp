@@ -23,10 +23,106 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        table, td, th {
+            border : 1px solid black;
+        }
+    </style>
 </head>
 <body>
-<% for(int j : days) {%>
-    <div> <%= j %> </div>
-<% } %>
+
+<table>
+    <%
+        int index = 0;
+    %>
+
+    <%
+        for(int i=0; i<6; i++){
+    %>
+        <tr>
+    <%
+           for(int j=0; j<7; j++){
+    %>
+           <td>
+               <%=days[index++]%>
+           </td>
+    <%
+        }
+    %>
+           </tr>
+    <%
+    }
+    %>
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%--<table>--%>
+<%--    <%--%>
+<%--        int index = 0;--%>
+<%--        for(int i=0; i<6; i++)  {--%>
+<%--    %>--%>
+<%--    <tr>--%>
+<%--    <%--%>
+<%--            for(int j=0; j<7; j++) {--%>
+<%--    %>--%>
+<%--        <td>--%>
+<%--            <%= days[index++] %>--%>
+<%--        </td>--%>
+<%--    <%--%>
+<%--            }--%>
+<%--    %>--%>
+<%--    </tr>--%>
+<%--    <%--%>
+<%--        }--%>
+<%--    %>--%>
+<%--</table>--%>
+
+
+
+
+    <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+</table>
+
 </body>
 </html>
