@@ -31,6 +31,14 @@
 </head>
 <body>
 
+<div>
+    <%
+        // TODO: 2021/11/04 월 전환 이벤트 생성
+    %>
+    <
+    <%= firstMonthDay.getMonth()%>
+    >
+</div>
 <table>
     <%
         int index = 0;
@@ -56,6 +64,25 @@
 
 </table>
 
+<table>
+
+    <tr>
+        <td>
+            <div><%=today.minusDays(1).getDayOfMonth() %></div>
+            <% // TODO: 해당 날짜에 대한 데이터를 동적으로 찾아서 바꾸기, 밑에 총 3개 있음 %>
+            <div>등,어깨</div>
+        </td>
+        <td>
+            <div><%=today.getDayOfMonth()%></div>
+            <div>가슴,팔</div>
+        </td>
+        <td>
+            <div><%=today.plusDays(1).getDayOfMonth()%></div>
+            <div>하체,어깨</div>
+        </td>
+    </tr>
+
+</table>
 
 
 
