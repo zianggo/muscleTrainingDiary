@@ -10,15 +10,32 @@
     int[] days = new int[42];
     LocalDate today = LocalDate.now();
 
-    int month = LocalDate.now().getMonthValue();
-    int year = LocalDate.now().getYear();
+    int temp;
+    if (request.getParameter("month") == null)
+        temp = 0;
+    else
+        temp = Integer.valueOf(request.getParameter("month"));
 
-    LocalDate firstMonthDay = LocalDate.of(year, month,1);
+    LocalDate currentWatchMonth;
+
+    if(request.getSession().getAttribute("currentWatchMonth") == null ||
+    request.getParameter("isToday") != null) {
+        currentWatchMonth = LocalDate.now();
+    } else {
+        currentWatchMonth = (LocalDate) request.getSession().getAttribute("currentWatchMonth");
+    }
+
+    int month = currentWatchMonth.plusMonths(temp).getMonthValue();
+    int year = currentWatchMonth.plusMonths(temp).getYear();
+
+    LocalDate firstMonthDay = LocalDate.of(year, month, 1);
     int weekInt = firstMonthDay.getDayOfWeek().getValue();
     LocalDate beforeMonthLastDay = firstMonthDay.minusDays(weekInt);
     for(int i = 0; i < days.length; i++) {
         days[i] = beforeMonthLastDay.plusDays(i).getDayOfMonth();
     }
+
+    request.getSession().setAttribute("currentWatchMonth", firstMonthDay);
 %>
 <html>
 <head>
@@ -35,9 +52,24 @@
     <%
         // TODO: 2021/11/04 월 전환 이벤트 생성
     %>
-    <
-    <%= firstMonthDay.getMonth()%>
-    >
+    <h1>
+       <%= year%>
+    </h1>
+    <% /* TODO: 2021/11/07 디자인 요소 적용하기
+                화살표 양쪽에 고정
+                투데이 우측고정
+         */
+                %>
+    <div>
+
+        <a href="?month=-1"> <- </a>
+        <%= firstMonthDay.getMonth()%>
+        (<%= firstMonthDay.getMonthValue()%>)
+        <a href="?month=1"> -> </a>
+    </div>
+    <div>
+        <a href="?isToday=Y">today</a>
+    </div>
 </div>
 <table>
     <%
@@ -69,7 +101,9 @@
     <tr>
         <td>
             <div><%=today.minusDays(1).getDayOfMonth() %></div>
-            <% // TODO: 해당 날짜에 대한 데이터를 동적으로 찾아서 바꾸기, 밑에 총 3개 있음 %>
+            <% /* TODO: 해당 날짜에 대한 데이터를 동적으로 찾아서 바꾸기, 밑에 총 3개 있음
+                        날짜 부분 어제,오늘,내일로 수정  */
+            %>
             <div>등,어깨</div>
         </td>
         <td>
