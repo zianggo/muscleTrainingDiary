@@ -11,6 +11,9 @@
     <title>최대중량 기록</title>
 </head>
 <body>
+<div>
+    <%= request.getParameter("targetDate")%>
+</div>
 <h1>등 + 어깨</h1>
 <table>
     <tr>

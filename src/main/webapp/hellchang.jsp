@@ -1,4 +1,5 @@
-<%@ page import="java.time.LocalDate" %><%--
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %><%--
   Created by IntelliJ IDEA.
   User: xiyo
   Date: 2021/11/02
@@ -7,7 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    int[] days = new int[42];
+    LocalDate[] days = new LocalDate[42];
     LocalDate today = LocalDate.now();
 
     int temp;
@@ -32,7 +33,7 @@
     int weekInt = firstMonthDay.getDayOfWeek().getValue();
     LocalDate beforeMonthLastDay = firstMonthDay.minusDays(weekInt);
     for(int i = 0; i < days.length; i++) {
-        days[i] = beforeMonthLastDay.plusDays(i).getDayOfMonth();
+        days[i] = beforeMonthLastDay.plusDays(i);
     }
 
     request.getSession().setAttribute("currentWatchMonth", firstMonthDay);
@@ -45,6 +46,11 @@
             border : 1px solid black;
         }
     </style>
+    <script>
+        function detailPage(targetDate) {
+
+        }
+    </script>
 </head>
 <body>
 
@@ -83,9 +89,9 @@
     <%
            for(int j=0; j<7; j++){
     %>
-           <td>
-               <%=days[index++]%>
-           </td>
+           <td><a href="/hellchangDetail1.jsp?targetDate=<%= days[index].format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))%>">
+               <%=days[index++].getDayOfMonth()%>
+           </a></td>
     <%
         }
     %>
@@ -115,73 +121,6 @@
         </td>
     </tr>
 
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%--<table>--%>
-<%--    <%--%>
-<%--        int index = 0;--%>
-<%--        for(int i=0; i<6; i++)  {--%>
-<%--    %>--%>
-<%--    <tr>--%>
-<%--    <%--%>
-<%--            for(int j=0; j<7; j++) {--%>
-<%--    %>--%>
-<%--        <td>--%>
-<%--            <%= days[index++] %>--%>
-<%--        </td>--%>
-<%--    <%--%>
-<%--            }--%>
-<%--    %>--%>
-<%--    </tr>--%>
-<%--    <%--%>
-<%--        }--%>
-<%--    %>--%>
-<%--</table>--%>
-
-
-
-
-    <tr>
-        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
-    <tr>
-        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-    </tr>
 </table>
 
 </body>
