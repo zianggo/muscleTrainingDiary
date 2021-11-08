@@ -100,18 +100,17 @@
 
     <tr>
         <td>
-            <div><%=today.minusDays(1).getDayOfMonth() %></div>
-            <% /* TODO: 해당 날짜에 대한 데이터를 동적으로 찾아서 바꾸기, 밑에 총 3개 있음
-                        날짜 부분 어제,오늘,내일로 수정  */
+            <% /* TODO: 해당 날짜에 대한 데이터를 동적으로 찾아서 바꾸기, 밑에 총 3개 있음*/
             %>
+            <div>어제(<%=today.minusDays(1).getDayOfMonth() %>)</div>
             <div>등,어깨</div>
         </td>
         <td>
-            <div><%=today.getDayOfMonth()%></div>
+            <div>오늘(<%=today.getDayOfMonth()%>)</div>
             <div>가슴,팔</div>
         </td>
         <td>
-            <div><%=today.plusDays(1).getDayOfMonth()%></div>
+            <div>내일(<%=today.plusDays(1).getDayOfMonth()%>)</div>
             <div>하체,어깨</div>
         </td>
     </tr>
